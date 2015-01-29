@@ -8,12 +8,12 @@ Import the public key used by the package management system.
 
 Create a /etc/apt/sources.list.d/mongodb.list file for MongoDB.
 
-        echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+    echo 'deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
 
 Reload local package database.
 
-        sudo apt-get update
+    sudo apt-get update
 
 Install the MongoDB packages.
 
-        sudo apt-get install -y mongodb-org
+    sudo apt-get install -y mongodb-org
