@@ -31,3 +31,10 @@ To activate nvm, you need to source it from your shell (when needed)
 Install stable
 
     nvm install stable
+
+### Forever.js
+
+Install
+
+    npm i forever -g
+
