@@ -38,3 +38,84 @@ Install
 
     npm i forever -g
 
+### Git
+
+Install
+
+    sudo apt-get install git -y
+
+Gen pub_rsa
+
+    ssh-keygen
+
+### Nginx
+
+Install
+
+    sudo apt-get install nginx -y
+
+Start
+
+    sudo service nginx start
+
+Edit conf
+
+    sudo nano /etc/nginx/nginx.conf
+    
+    user www-data;
+    worker_processes 4;
+    pid /var/run/nginx.pid;
+
+    events {
+	    worker_connections 768;
+	    # multi_accept on;
+    }
+
+    http {
+    ##
+	# Basic Settings
+	##
+
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	keepalive_timeout 65;
+	types_hash_max_size 2048;
+	# server_tokens off;
+
+	# server_names_hash_bucket_size 64;
+	# server_name_in_redirect off;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+	##
+	# Logging Settings
+	##
+
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+
+	##
+	# Gzip Settings
+	##
+
+	gzip on;
+	gzip_disable "msie6";
+
+    server {
+    
+    # IP, который мы будем слушать
+    listen 80;
+
+    location / {
+        # IP и порт, на которых висит node.js
+        proxy_pass http://localhost:3080;
+        proxy_set_header Host $host;
+    }
+    }
+    }
+
+
+Restart
+    sudo service nginx restart
